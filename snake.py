@@ -93,6 +93,13 @@ def draw_score(tall): #Funksjon som tegner antall epler so blir samlet inn. (tek
     label = myFont.render(f"Antall epler: {tall}" ,1, BLACK) #Setter teksten til antall epler som er samlet inn, og fargen til svart.
     screen.blit(label, (20, 20))
 
+
+def draw_highscore(tall): #Funksjon som tegner antall epler so blir samlet inn. (tekst)
+    myFont = pygame.font.SysFont("monospace", 16)  #Velger font.
+    label = myFont.render(f"Heighscore: {tall}" ,1, BLACK) #Setter teksten til antall epler som er samlet inn, og fargen til svart.
+    screen.blit(label, (BREDDE - 200, HØYDE - 40))
+
+
 def collide(): #FUnksjon for å sjekke om slangen har tatt et eple. 
     if snake.body[0][0] == apple.xPos and snake.body[0][1] == apple.yPos: #Hvis hodet til slangen er der eplet er.
 
@@ -139,9 +146,6 @@ def draw_cells():
 def update(): #Funksjon som oppdaterer spillet.
     screen.fill(BACKGROUNDCOLOR)#Tegner hvit bakgrunn.
 
-    
-    
-    
     #Kjører funksjonene fra slange og eple-klassen:
     snake.draw()
     snake.move()
@@ -149,6 +153,7 @@ def update(): #Funksjon som oppdaterer spillet.
 
     #Kjører funksjonene:
     draw_score(snake.score)
+    draw_highscore(snake.score)
     collide() #Hvis slangen kolliderer med veggen, seg selv, eller eplet.
     
 
