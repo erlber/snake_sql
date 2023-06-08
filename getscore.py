@@ -1,5 +1,5 @@
 import pymssql
-from sqlvar import server, userName, pw, db 
+from variables import server, userName, pw, db 
 
 def get_highscore():
     conn = pymssql.connect(server, userName, pw)
