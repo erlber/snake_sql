@@ -1,6 +1,7 @@
 import pygame #Importerer modulen.
 import random #Importerer random. Modulen kan brukes til å lage tilfeldige tall.
 import time #Importerer time.
+import getscore
 
 #Programmet:
 pygame.init() #Initialiserer pygame-modulene.
@@ -19,6 +20,7 @@ CELL_NUMBER = 15
 BREDDE = CELL_SIZE * CELL_NUMBER #Regner ut bredden.
 HØYDE = CELL_SIZE * CELL_NUMBER #Regner ut høyden
 
+highscore = getscore.get_highscore()
 #Definerer verdiene til slangen:
 slange = [ 7 * CELL_SIZE + 1, 7 * CELL_SIZE + 1 , CELL_SIZE - 1, CELL_SIZE - 1] #Plasserer slangen midt i ruta.
 
@@ -94,9 +96,9 @@ def draw_score(tall): #Funksjon som tegner antall epler so blir samlet inn. (tek
     screen.blit(label, (20, 20))
 
 
-def draw_highscore(tall): #Funksjon som tegner antall epler so blir samlet inn. (tekst)
+def draw_highscore(): #Funksjon som tegner antall epler so blir samlet inn. (tekst)
     myFont = pygame.font.SysFont("monospace", 16)  #Velger font.
-    label = myFont.render(f"Heighscore: {tall}" ,1, BLACK) #Setter teksten til antall epler som er samlet inn, og fargen til svart.
+    label = myFont.render(f"Heighscore: {highscore}" ,1, BLACK) #Setter teksten til antall epler som er samlet inn, og fargen til svart.
     screen.blit(label, (BREDDE - 200, HØYDE - 40))
 
 
@@ -153,7 +155,7 @@ def update(): #Funksjon som oppdaterer spillet.
 
     #Kjører funksjonene:
     draw_score(snake.score)
-    draw_highscore(snake.score)
+    draw_highscore()
     collide() #Hvis slangen kolliderer med veggen, seg selv, eller eplet.
     
 
